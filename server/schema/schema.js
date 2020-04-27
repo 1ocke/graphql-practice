@@ -6,6 +6,7 @@ const {
   GraphQLSchema,
   GraphQLID,
   GraphQLInt,
+  GraphQLList
 } = graphql;
 
 const movies = [
@@ -13,6 +14,10 @@ const movies = [
   { id: '2', name: 'Alien', genre: 'Horror', directorId: '2' },
   { id: 3, name: 'Evangelion', genre: 'Anime', directorId: 3 },
   { id: 4, name: 'Marriage Story', genre: 'Drama', directorId: 4 },
+  { id: 5, name: 'Reservoir Dogs', genre: 'Crime', directorId: 1 },
+  { id: '6', name: 'The Hateful Eight', genre: 'Crime', directorId: 1 },
+  { id: 7, name: 'Inglourious Basterds', genre: 'Crime', directorId: 1 },
+  { id: 8, name: 'Blade Runner', genre: 'Sci-fi', directorId: 2 },
 ];
 
 const directors = [
@@ -43,6 +48,12 @@ const DirectorType = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     age: { type: GraphQLInt },
+    movies: {
+      type: new GraphQLList(MovieType),
+      resolve(parent, args) {
+        return movies.filter((movie) => movie.directorId == parent.id);
+      },
+    },
   }),
 });
 
@@ -61,6 +72,18 @@ const Query = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return directors.find((director) => director.id == args.id);
+      }
+    },
+    movies: {
+      type: new GraphQLList(MovieType),
+      resolve(parent, args) {
+        return movies;
+      },
+    },
+    directors: {
+      type: new GraphQLList(DirectorType),
+      resolve(parent, args) {
+        return directors;
       }
     },
   },
