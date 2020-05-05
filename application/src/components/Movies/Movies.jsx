@@ -27,6 +27,8 @@ class Movies extends React.Component {
 
   handleClose = () => {
     this.setState({
+      director: '',
+      id: '',
       name: '',
       genre: '',
       watched: false,

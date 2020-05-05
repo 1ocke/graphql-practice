@@ -11,8 +11,15 @@ class DirectorsForm extends React.Component {
   handleClose = () => { this.props.onClose(); };
 
   handleSave = () => {
-    const { selectedValue, onClose } = this.props;
+    const { selectedValue, onClose, addDirector, updateDirector } = this.props;
     const { id, name, age } = selectedValue;
+
+    if (name === '' || age === '') {
+      onClose();
+      return;
+    }
+
+    id ? updateDirector({ name, age: Number(age), id }) : addDirector({ name, age: Number(age) });
     onClose();
   };
 
@@ -32,6 +39,7 @@ class DirectorsForm extends React.Component {
             onChange={handleChange('name')}
             margin="normal"
             variant="outlined"
+            required={true}
           />
           <TextField
             id="outlined-rate"
@@ -41,6 +49,7 @@ class DirectorsForm extends React.Component {
             onChange={handleChange('age')}
             type="number"
             margin="normal"
+            required={true}
             variant="outlined"
           />
           <div className={classes.wrapper}>
