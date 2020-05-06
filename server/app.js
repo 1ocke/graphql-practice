@@ -8,14 +8,10 @@ const env = require('dotenv');
 env.config();
 const app = express();
 
-const PORT = 3005;
+const PORT = process.env.PORT;
 const dbUrl = process.env.DB_CONN;
 
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
-
-app.get('/', (req, res) => {
-  res.redirect('/graphql');
-});
 
 app.use(cors());
 
