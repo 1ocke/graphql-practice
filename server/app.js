@@ -9,9 +9,9 @@ env.config();
 const app = express();
 
 const PORT = 3005;
-// const dbUrl = process.env.DB_CONN;
+const dbUrl = process.env.DB_CONN;
 
-mongoose.connect("mongodb+srv://Andrew:Shore1994@cluster0-ulcic.mongodb.net/graphql-practice?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(cors());
 
