@@ -13,6 +13,10 @@ const dbUrl = process.env.DB_CONN;
 
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 
+app.get('/', (req, res) => {
+  res.redirect('/graphql');
+});
+
 app.use(cors());
 
 app.use('/graphql', graphqlHTTP({
