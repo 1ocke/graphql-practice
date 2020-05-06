@@ -26,6 +26,13 @@ const dbConnection = mongoose.connection;
 dbConnection.on('error', (err) => console.log(`Connection error: ${err}`));
 dbConnection.once('open', () => console.log('Connected to DB'));
 
+app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, '..', 'build')));
+
+app.get('/ping', function (req, res) {
+return res.send('pong');
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
 });
