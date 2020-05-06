@@ -20,6 +20,10 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true,
 }));
 
+app.get('/', (req, res) => {
+  res.redirect('/graphql');
+});
+
 const dbConnection = mongoose.connection;
 dbConnection.on('error', (err) => console.log(`Connection error: ${err}`));
 dbConnection.once('open', () => console.log('Connected to DB'));
