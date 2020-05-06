@@ -22,7 +22,7 @@ app.use('/graphql', graphqlHTTP({
 }));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
 });
 
 const dbConnection = mongoose.connection;
