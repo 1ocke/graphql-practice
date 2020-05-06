@@ -2,4 +2,4 @@ install:
 	npm i
 
 start:
-	nodemon server/app.js
+	npx nodemon server/app.js
