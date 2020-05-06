@@ -10,7 +10,7 @@ env.config();
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST || '0.0.0.0';
+// const HOST = process.env.HOST || '0.0.0.0';
 const dbUrl = process.env.DB_CONN;
 
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -30,6 +30,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
 });
 
-app.listen(PORT, HOST, (err) => {
+app.listen(PORT, (err) => {
   err ? console.log(err) : console.log('server started!');
 });
