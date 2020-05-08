@@ -9,11 +9,11 @@ const path = require('path');
 env.config();
 const app = express();
 
-const PORT = process.env.PORT || 3000;
-// const HOST = process.env.HOST || '0.0.0.0';
-// const dbUrl = process.env.DB_CONN;
+const PORT = process.env.PORT || 4000;
+const HOST = process.env.HOST;
+const dbUrl = process.env.DB_CONN;
 
-mongoose.connect('mongodb+srv://Andrew:Shore1994@cluster0-ulcic.mongodb.net/graphql-practice?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(cors());
 
@@ -37,6 +37,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
 });
 
-app.listen(PORT, (err) => {
+app.listen(PORT, HOST, (err) => {
   err ? console.log(err) : console.log('server started!');
 });
