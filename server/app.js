@@ -10,7 +10,6 @@ env.config();
 const app = express();
 
 const PORT = process.env.PORT || 3005;
-// const HOST = process.env.HOST;
 const dbUrl = process.env.DB_CONN;
 
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -33,7 +32,7 @@ app.get('/ping', function (req, res) {
 return res.send('pong');
 });
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
 });
 
