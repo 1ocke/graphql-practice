@@ -4,9 +4,13 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import theme from './components/theme';
+import env from 'dotenv';
+env.config();
+
+const PORT = process.env.PORT;
 
 const client = new ApolloClient({
-  uri: 'http://0.0.0.0:3005/graphql',
+  uri: `http://0.0.0.0:${PORT}/graphql`,
 });
 
 class App extends Component {
