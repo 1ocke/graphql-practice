@@ -6,7 +6,7 @@ import { ApolloProvider } from 'react-apollo';
 import theme from './components/theme';
 
 const client = new ApolloClient({
-  uri: 'https://directors-movies.herokuapp.com/:3005/graphql',
+  uri: 'http://0.0.0.0:3005/graphql',
 });
 
 class App extends Component {
