@@ -89,12 +89,13 @@ class MoviesTable extends React.Component {
             </TableHead>
             <TableBody>
               {movies.map(movie => {
+                console.log(movie);
                 return (
                   <TableRow key={movie.id}>
                     <TableCell component="th" scope="row">{movie.name}</TableCell>
                     <TableCell>{movie.genre}</TableCell>
                     <TableCell align="right">{movie.rate}</TableCell>
-                    <TableCell>{movie.director.name}</TableCell>
+                    <TableCell>{movie?.director?.name ?? 'Unknown'}</TableCell>
                     <TableCell>
                       <Checkbox checked={movie.watched} disabled />
                     </TableCell>

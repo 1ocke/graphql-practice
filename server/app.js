@@ -1,5 +1,5 @@
 const express = require('express');
-const graphqlHTTP = require('express-graphql');
+const { graphqlHTTP } = require('express-graphql');
 const mongoose = require('mongoose');
 const schema = require('./schema/schema.js');
 const cors = require('cors');
@@ -10,8 +10,8 @@ env.config();
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST;
-const dbUrl = process.env.DB_CONN;
+const HOST = process.env.HOST || '0.0.0.0';
+const dbUrl = 'mongodb+srv://Andrew:Shore1994@cluster0-ulcic.mongodb.net/graphql-practice?retryWrites=true&w=majority';
 
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 
